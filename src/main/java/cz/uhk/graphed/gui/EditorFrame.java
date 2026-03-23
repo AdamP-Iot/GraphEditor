@@ -21,14 +21,15 @@ public class EditorFrame extends JFrame {
 
     private void initSampleData() {
         canvas.add(new Square(new Point (100,100),Color.black,50));
-        canvas.add(new Circle(new Point (100,100),Color.black,25));
+        canvas.add(new Circle(new Point (100,100),Color.black,50));
         canvas.add(new Square(new Point (50,100),Color.black,50));
+        canvas.add(new Circle(new Point (50,100),Color.black,25));
         canvas.add(new Square(new Point (100,150),Color.black,50));
         canvas.add(new Square(new Point (150,100),Color.black,50));
         canvas.add(new Square(new Point (100,50),Color.black,50));
         canvas.add(new Rectangle(new Point (300,100),Color.green,50,100));
         canvas.add(new Circle(new Point (500,100),Color.RED,50));
-        canvas.add(new Triangle(new Point (600,100),Color.RED,100));
+        canvas.add(new Triangle(new Point (600,110),Color.RED,100));
     }
 
 }
