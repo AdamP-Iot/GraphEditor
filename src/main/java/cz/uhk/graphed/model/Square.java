@@ -22,12 +22,15 @@ public class Square extends AbstractGraphicObject {
     @Override
     public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D) g; //control over geometry
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(color);
         g2.drawRect(position.x,position.y,a,a); // square drawn
     }
 
     @Override
     public boolean contains(Point p) {
-        return false;
+        return (p.x >= position.x && p.x <= position.x + a)&&
+                (p.y >= position.y && p.y <= position.y + a);
     }
 }
