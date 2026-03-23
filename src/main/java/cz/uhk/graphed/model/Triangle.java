@@ -41,7 +41,8 @@ public class Triangle extends AbstractGraphicObject{
 
     @Override
     public boolean contains(Point p) {
-
+    //domácí ukol rozpohyhobat dx=dy/tg60stupnu
+        //int dx = (int)Math.Round((p.y - position.y)*Math.tan(Math.PI / 6));
         return false;
     }
 }
