@@ -30,6 +30,7 @@ public class Triangle extends AbstractGraphicObject{
 
     @Override
     public void draw(Graphics g) {
+        computeC();
         var g2 = (Graphics2D) g;
         g2.setColor(color);
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -40,9 +41,15 @@ public class Triangle extends AbstractGraphicObject{
     }
 
     @Override
-    public boolean contains(Point p) {
     //domácí ukol rozpohyhobat dx=dy/tg60stupnu
-        //int dx = (int)Math.Round((p.y - position.y)*Math.tan(Math.PI / 6));
-        return false;
+    //int dx = (int)Math.Round((p.y - position.y)*Math.tan(Math.PI / 6))...;
+    public boolean contains(Point p) {
+        computeC();
+        if (p.y < cy || p.y > position.y) {
+            return false;
+        }
+        int dy = position.y - p.y;
+        int dx = (int)Math.round(dy / Math.tan(Math.PI / 3));
+        return p.x >= position.x + dx && p.x <= position.x + a - dx;
     }
 }
