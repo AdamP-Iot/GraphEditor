@@ -10,6 +10,7 @@ import java.util.List;
 public class Canvas extends JPanel {
     private List<AbstractGraphicObject> graphicObjects = new ArrayList<>();
     private AbstractGraphicObject selectedObject;
+    private String selectedTool = "";
     private int dx;
     private int dy;
     public Canvas() {
@@ -56,5 +57,9 @@ public class Canvas extends JPanel {
         for (var o: graphicObjects){ //Draw everything in list
             o.draw(g);
         }
+    }
+
+    public void setSelectedTool(String square) {
+        this.selectedTool = selectedTool;
     }
 }
