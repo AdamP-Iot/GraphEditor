@@ -43,12 +43,12 @@ public class Canvas extends JPanel {
                    selectedObject = null;
                    repaint();
                    return;
-               }
-               selectedObject = findObjectContaining(e.getPoint());
-               if (selectedObject != null) {
-                   //object found
-                   dx = e.getX()-selectedObject.getPosition().x;
-                   dy = e.getY()-selectedObject.getPosition().y;
+               } else if(selectedTool.equals("Drag")){
+                   selectedObject = findObjectContaining(e.getPoint());
+                   if (selectedObject != null) {
+                       dx = e.getX()-selectedObject.getPosition().x;
+                       dy = e.getY()-selectedObject.getPosition().y;
+                   }
                }
            }
        });
@@ -85,6 +85,10 @@ public class Canvas extends JPanel {
         }
     }
 
+    /**
+     *  For actionPerformed function
+     * @param selectedTool
+     */
     public void setSelectedTool(String selectedTool) {
         this.selectedTool = selectedTool;
     }
