@@ -15,10 +15,18 @@ public class EditorFrame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);//So the application closes on exit
         add(canvas,BorderLayout.CENTER); //Where the panel will be placed (center..)
         initSampleData();
-
+        add(toolBar(),BorderLayout.NORTH);
         pack(); //instead off setSize...
     }
-
+    private JToolBar toolBar(){
+        JToolBar tb = new JToolBar(JToolBar.NORTH);
+        JButton b1 = new JButton("button1");
+        //JPanel p = new JPanel();
+        tb.add(b1);
+        tb.setSize(500,500);
+        tb.setVisible(true);
+        return tb;
+    }
     private void initSampleData() {
         canvas.add(new Square(new Point (100,100),Color.black,50));
         canvas.add(new Circle(new Point (100,100),Color.black,50));

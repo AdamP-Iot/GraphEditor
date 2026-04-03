@@ -28,6 +28,8 @@ public abstract class AbstractGraphicObject {
 
     public abstract boolean contains(Point p);
 
+    public void move (int dx, int dy) { position.translate(dx,dy); }
+
     public boolean contains(int x, int y) {
         return contains(new Point(x, y));
     }

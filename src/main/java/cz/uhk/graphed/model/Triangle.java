@@ -11,9 +11,7 @@ public class Triangle extends AbstractGraphicObject{
     public Triangle(Point position, Color color, int a) {
         super(position, color);
         this.a = a;
-        computeC();
     }
-
     private void computeC() {
         cx = position.x + (int)Math.round(a/2.0);
         cy = position.y - (int)Math.round(a * Math.sin(Math.PI / 3)); //nebo Math.toRadiands(60)
@@ -44,7 +42,7 @@ public class Triangle extends AbstractGraphicObject{
     //domácí ukol rozpohyhobat dx=dy/tg60stupnu
     //int dx = (int)Math.Round((p.y - position.y)*Math.tan(Math.PI / 6))...;
     public boolean contains(Point p) {
-        computeC();
+
         if (p.y < cy || p.y > position.y) {
             return false;
         }
