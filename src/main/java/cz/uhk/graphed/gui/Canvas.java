@@ -1,6 +1,11 @@
 package cz.uhk.graphed.gui;
-import cz.uhk.graphed.model.AbstractGraphicObject;
+import cz.uhk.graphed.model.*;
+import cz.uhk.graphed.model.Rectangle;
+import cz.uhk.graphed.model.Circle;
+import cz.uhk.graphed.model.Square;
+import cz.uhk.graphed.model.Triangle;
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -17,7 +22,28 @@ public class Canvas extends JPanel {
         setPreferredSize(new Dimension(800, 600)); //Canvas size
        addMouseListener(new MouseAdapter() {
            @Override
-           public void mousePressed(MouseEvent e) {
+           public void mousePressed(MouseEvent e) { //selectedObject = null; <- so that I can't drag spawned objects while spawning objects from toolBar
+               if(selectedTool.equals("Square")){
+                   add(new Square(new Point (e.getX(),e.getY()),Color.RED,50));
+                   selectedObject = null;
+                   repaint();
+                   return;
+               } else if(selectedTool.equals("Circle")){
+                   add(new Circle(new Point (e.getX(),e.getY()),Color.RED,30));
+                   selectedObject = null;
+                   repaint();
+                   return;
+               }else if(selectedTool.equals("Triangle")){
+                   add(new Triangle(new Point (e.getX(),e.getY()),Color.RED,50));
+                   selectedObject = null;
+                   repaint();
+                   return;
+               }else if(selectedTool.equals("Rectangle")){
+                   add(new Rectangle(new Point (e.getX(),e.getY()),Color.RED,40,60));
+                   selectedObject = null;
+                   repaint();
+                   return;
+               }
                selectedObject = findObjectContaining(e.getPoint());
                if (selectedObject != null) {
                    //object found
@@ -59,7 +85,7 @@ public class Canvas extends JPanel {
         }
     }
 
-    public void setSelectedTool(String square) {
+    public void setSelectedTool(String selectedTool) {
         this.selectedTool = selectedTool;
     }
 }

@@ -26,7 +26,7 @@ public class EditorFrame extends JFrame implements ActionListener {
         pack(); //instead off setSize...
     }
     private JToolBar toolBar(){
-        JToolBar tb = new JToolBar(JToolBar.NORTH);
+        JToolBar tb = new JToolBar();
 
         ButtonGroup bGroup = new ButtonGroup(); //better to have buttons in a group
         bGroup.add(squareTb);
@@ -44,7 +44,7 @@ public class EditorFrame extends JFrame implements ActionListener {
         tb.add(triangleTb);
         tb.add(rectangleTb);
 
-        tb.setSize(800,800);
+        tb.setSize(500,500);
         tb.setVisible(true);
         return tb;
     }
@@ -53,26 +53,20 @@ public class EditorFrame extends JFrame implements ActionListener {
         Object source = e.getSource();
 
         if (source == squareTb) {
-            canvas.setSelectedTool("square");
+            canvas.setSelectedTool("Square");
         } else if (source == circleTb) {
-            canvas.setSelectedTool("circle");
+            canvas.setSelectedTool("Circle");
         } else if (source == triangleTb) {
-            canvas.setSelectedTool("triangle");
+            canvas.setSelectedTool("Triangle");
         } else if (source == rectangleTb) {
-            canvas.setSelectedTool("rectangle");
+            canvas.setSelectedTool("Rectangle");
         }
     }
     private void initSampleData() {
         canvas.add(new Square(new Point (100,100),Color.black,50));
         canvas.add(new Circle(new Point (100,100),Color.black,50));
-        canvas.add(new Square(new Point (50,100),Color.black,50));
-        canvas.add(new Circle(new Point (50,100),Color.black,25));
-        canvas.add(new Square(new Point (100,150),Color.black,50));
-        canvas.add(new Square(new Point (150,100),Color.black,50));
-        canvas.add(new Square(new Point (100,50),Color.black,50));
-        canvas.add(new Rectangle(new Point (300,100),Color.green,50,100));
-        canvas.add(new Circle(new Point (500,100),Color.RED,50));
-        canvas.add(new Triangle(new Point (600,110),Color.RED,100));
+        canvas.add(new Rectangle(new Point (100,100),Color.black,50,80));
+        canvas.add(new Triangle(new Point (100,100),Color.black,100));
     }
 
 }
