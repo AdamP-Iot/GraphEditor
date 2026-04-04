@@ -11,7 +11,9 @@ public class Group extends AbstractGraphicObject{
         super(position,color);
         objects = new ArrayList<>();
     };
-    public Group(){};
+    public Group(){
+        objects = new ArrayList<>();
+    };
 
     public void addObject(AbstractGraphicObject object) {
         objects.add(object);

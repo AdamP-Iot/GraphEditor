@@ -1,8 +1,6 @@
 package cz.uhk.graphed.gui;
-import cz.uhk.graphed.model.Circle;
+import cz.uhk.graphed.model.*;
 import cz.uhk.graphed.model.Rectangle;
-import cz.uhk.graphed.model.Square;
-import cz.uhk.graphed.model.Triangle;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -80,6 +78,15 @@ public class EditorFrame extends JFrame implements ActionListener {
         }
     }
     private void initSampleData() {
+        //TEST FOR GROUPS
+        Square s1 = new Square(new Point (100,100),Color.black,50);
+        Circle c1 = new Circle(new Point (100,100),Color.black,50);
+        canvas.add(s1);
+        canvas.add(c1);
+        Group group = new Group(); //make a group
+        group.addObject(s1);//add to group
+        group.addObject(c1);
+        canvas.setGroup(group); //add to canvas
         /**
           canvas.add(new Square(new Point (100,100),Color.black,50));
         canvas.add(new Circle(new Point (100,100),Color.black,50));
