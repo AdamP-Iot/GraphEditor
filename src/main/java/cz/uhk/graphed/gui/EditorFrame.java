@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Random;
 
 public class EditorFrame extends JFrame implements ActionListener {
     private Canvas canvas = new Canvas();
@@ -17,6 +18,10 @@ public class EditorFrame extends JFrame implements ActionListener {
     JToggleButton triangleTb = new JToggleButton("Triangle");
     JToggleButton rectangleTb = new JToggleButton("Rectangle");
     JToggleButton dragB = new JToggleButton("");
+    JButton randomSquareB = new JButton("Rand Square");
+    JButton randomCircleB = new JButton("Rand Circle");
+    JButton randomTriangleB = new JButton("Rand Triangle");
+    JButton randomRectangleB = new JButton("Rand Rectangle");
 
     public EditorFrame() throws HeadlessException {
         super("FIM Graphic Editor");
@@ -24,6 +29,7 @@ public class EditorFrame extends JFrame implements ActionListener {
         add(canvas,BorderLayout.CENTER); //Where the panel will be placed (center...)
         initSampleData();
         add(toolBar(),BorderLayout.NORTH);
+        add(toolBarRandom(),BorderLayout.SOUTH);
         pack(); //instead off setSize...
     }
     private JToolBar toolBar(){
@@ -50,20 +56,43 @@ public class EditorFrame extends JFrame implements ActionListener {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         tb.add(squareTb);
         tb.add(circleTb);
         tb.add(triangleTb);
         tb.add(rectangleTb);
         tb.add(dragB);
-
         tb.setSize(500,500);
         tb.setVisible(true);
         return tb;
     }
+    //for randomGeneration
+    private JToolBar toolBarRandom(){
+        JToolBar tb2 = new JToolBar(JToolBar.HORIZONTAL);
+
+        randomSquareB.addActionListener(this);
+        randomCircleB.addActionListener(this);
+        randomTriangleB.addActionListener(this);
+        randomRectangleB.addActionListener(this);
+
+        tb2.add(randomSquareB);
+        tb2.add(randomCircleB);
+        tb2.add(randomTriangleB);
+        tb2.add(randomRectangleB);
+
+        tb2.setSize(500,500);
+        tb2.setVisible(true);
+        return tb2;
+    }
     @Override
     public void actionPerformed(ActionEvent e){ //setNameOfObject
         Object source = e.getSource();
+
+        Random rnd = new Random();
+        int shapeSize = 30 + rnd.nextInt(71); //100 max
+        int shapeSize2 = 30 + rnd.nextInt(71);
+        int x = rnd.nextInt(Math.max(1,getWidth()-shapeSize));
+        int y = rnd.nextInt(Math.max(1,getHeight()-shapeSize));
+
 
         if (source == squareTb) {
             canvas.setSelectedTool("Square");
@@ -75,6 +104,18 @@ public class EditorFrame extends JFrame implements ActionListener {
             canvas.setSelectedTool("Rectangle");
         } else if (source == dragB){
             canvas.setSelectedTool("Drag");
+        } else if (source == randomSquareB){
+            canvas.add(new Square(new Point (x,y),Color.BLUE,shapeSize));
+            repaint();
+        } else if (source == randomCircleB){
+            canvas.add(new Circle(new Point (x,y),Color.BLUE,shapeSize));
+            repaint();
+        } else if (source == randomTriangleB){
+            canvas.add(new Triangle(new Point (x,y),Color.BLUE,shapeSize));
+            repaint();
+        } else if (source == randomRectangleB){
+            canvas.add(new Rectangle(new Point (x,y),Color.BLUE,shapeSize,shapeSize2));
+            repaint();
         }
     }
     private void initSampleData() {
@@ -92,6 +133,14 @@ public class EditorFrame extends JFrame implements ActionListener {
         canvas.add(new Circle(new Point (100,100),Color.black,50));
         canvas.add(new Rectangle(new Point (100,100),Color.black,50,80));
         canvas.add(new Triangle(new Point (100,100),Color.black,100));
+
+
+         JToolBar tb2 = new JToolBar();
+         tb2.add(squareTb);
+         tb2.add(circleTb);
+         tb2.add(triangleTb);
+         tb2.add(rectangleTb);
+         tb2.add(dragB);
          **/
     }
 

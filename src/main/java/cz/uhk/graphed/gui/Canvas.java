@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Canvas extends JPanel {
     private List<AbstractGraphicObject> graphicObjects = new ArrayList<>();
@@ -19,28 +20,30 @@ public class Canvas extends JPanel {
     private Group group;
     private int dx;
     private int dy;
+
+
     public Canvas() {
         setPreferredSize(new Dimension(800, 600)); //Canvas size
        addMouseListener(new MouseAdapter() {
            @Override
            public void mousePressed(MouseEvent e) { //selectedObject = null; <- so that I can't drag spawned objects while spawning objects from toolBar
                if(selectedTool.equals("Square") ){
-                   add(new Square(new Point (e.getX(),e.getY()),Color.RED,50));
+                   add(new Square(new Point (e.getX()-20,e.getY()-20),Color.RED,50));
                    selectedObject = null;
                    repaint();
                } else if(selectedTool.equals("Circle")){
-                   add(new Circle(new Point (e.getX(),e.getY()),Color.RED,30));
+                   add(new Circle(new Point (e.getX()-20,e.getY()-20),Color.RED,30));
                    selectedObject = null;
                    repaint();
-               }else if(selectedTool.equals("Triangle")){
-                   add(new Triangle(new Point (e.getX(),e.getY()),Color.RED,50));
+               } else if(selectedTool.equals("Triangle")){
+                   add(new Triangle(new Point (e.getX()-20,e.getY()+20),Color.RED,50));
                    selectedObject = null;
                    repaint();
-               }else if(selectedTool.equals("Rectangle")){
-                   add(new Rectangle(new Point (e.getX(),e.getY()),Color.RED,40,60));
+               } else if(selectedTool.equals("Rectangle")){
+                   add(new Rectangle(new Point (e.getX()-20,e.getY()-20),Color.RED,40,60));
                    selectedObject = null;
                    repaint();
-               } else if(selectedTool.equals("Drag") && group!= null && group.contains(e.getPoint()) ) {
+               } else if(selectedTool.equals("Drag") && group!= null && group.contains(e.getPoint())){
                    selectedObject = group;
                    dx = e.getX();
                    dy = e.getY();
