@@ -74,7 +74,7 @@ public class Canvas extends JPanel {
 
         //image for bg from URL
         try {
-            bgImage = new ImageIcon(new java.net.URL("https://media1.tenor.com/m/1E6HMze0mQEAAAAd/dancing-cockroach-rainbow.gif")).getImage();
+           bgImage = new ImageIcon(new java.net.URL("https://media1.tenor.com/m/1E6HMze0mQEAAAAd/dancing-cockroach-rainbow.gif")).getImage();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -86,7 +86,6 @@ public class Canvas extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 gifBg = true;
                 repaint();
-
                 try {
                     AudioInputStream audio = AudioSystem.getAudioInputStream(new File("song.wav"));
                     if (clip != null && clip.isRunning()) {
@@ -99,12 +98,11 @@ public class Canvas extends JPanel {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-
-
             }
 
         });
         addMouseMotionListener(new MouseAdapter() {
+
             //selectedObject.setPosition(e.getX()-dx,e.getY()-dy); -> replaced by dx,dy and move
             @Override
             public void mouseDragged(MouseEvent e) {
@@ -142,22 +140,16 @@ public class Canvas extends JPanel {
         if (gifBg) {
             g.drawImage(bgImage, 0, 0, getWidth(), getHeight(), this);
         }
+
         for (var o : graphicObjects) { //Draw everything in list
             o.draw(g);
         }
-
-
     }
 
     public void setGroup(Group group) {
         this.group = group;
     }
 
-    /**
-     * For actionPerformed function
-     *
-     * @param selectedTool
-     */
     public void setSelectedTool(String selectedTool) {
         this.selectedTool = selectedTool;
     }

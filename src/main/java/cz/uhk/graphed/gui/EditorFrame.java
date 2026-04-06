@@ -13,7 +13,6 @@ import java.util.Random;
 
 public class EditorFrame extends JFrame implements ActionListener {
     private Canvas canvas = new Canvas();
-
     JToggleButton squareTb = new JToggleButton("Square");
     JToggleButton circleTb = new JToggleButton("Circle");
     JToggleButton triangleTb = new JToggleButton("Triangle");
@@ -39,7 +38,6 @@ public class EditorFrame extends JFrame implements ActionListener {
     private JToolBar toolBar() {
         JToolBar tb = new JToolBar();
         JLabel label = new JLabel("Nemačkat 'Q' !");
-        label.setForeground(Color.RED);
         label.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
 
 
@@ -104,7 +102,10 @@ public class EditorFrame extends JFrame implements ActionListener {
         int shapeSize2 = 30 + rnd.nextInt(71);
         int x = rnd.nextInt(Math.max(1, getWidth() - shapeSize));
         int y = rnd.nextInt(Math.max(1, getHeight() - shapeSize));
-
+        float r = rnd.nextFloat();
+        float g = rnd.nextFloat();
+        float b = rnd.nextFloat();
+        Color randomColor = new Color(r,g,b);
 
         if (source == squareTb) {
             canvas.setSelectedTool("Square");
@@ -117,16 +118,16 @@ public class EditorFrame extends JFrame implements ActionListener {
         } else if (source == dragB) {
             canvas.setSelectedTool("Drag");
         } else if (source == randomSquareB) {
-            canvas.add(new Square(new Point(x, y), Color.BLUE, shapeSize));
+            canvas.add(new Square(new Point(x, y), randomColor.darker(), shapeSize));
             repaint();
         } else if (source == randomCircleB) {
-            canvas.add(new Circle(new Point(x, y), Color.BLUE, shapeSize));
+            canvas.add(new Circle(new Point(x, y), randomColor.darker(), shapeSize));
             repaint();
         } else if (source == randomTriangleB) {
-            canvas.add(new Triangle(new Point(x, y), Color.BLUE, shapeSize));
+            canvas.add(new Triangle(new Point(x, y), randomColor.darker(), shapeSize));
             repaint();
         } else if (source == randomRectangleB) {
-            canvas.add(new Rectangle(new Point(x, y), Color.BLUE, shapeSize, shapeSize2));
+            canvas.add(new Rectangle(new Point(x, y), randomColor.darker(), shapeSize, shapeSize2));
             repaint();
         }
     }
